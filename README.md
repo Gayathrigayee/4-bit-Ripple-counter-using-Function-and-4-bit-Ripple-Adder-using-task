@@ -53,8 +53,14 @@ endmodule
 
 
 # Test Bench
+module ripcar_tb; reg [3:0] a, b; reg cin; wire [3:0] sum; wire cout; ripcar uut (a, b, cin, sum, cout);
 
+initial begin $monitor("Time=%0t | a=%b b=%b cin=%b | sum=%b cout=%b", $time, a, b, cin, sum, cout);
+
+a=4'b0000; b=4'b0000; cin=0; #10 a=4'b0101; b=4'b0011; cin=0; #10 a=4'b1111; b=4'b0001; cin=0; #10 a=4'b1010; b=4'b0101; cin=1; #10 a=4'b1111; b=4'b1111; cin=1; #10 $finish; end endmodule
 # Output Waveform
+<img width="853" height="531" alt="Screenshot 2025-11-18 003606" src="https://github.com/user-attachments/assets/46965a02-3ce8-4a5f-b3a7-307ced03ee7d" />
+
 
 # 4 bit Ripple counter using Function
 // 4-bit Ripple Counter using Function
@@ -77,9 +83,10 @@ endmodule
 
 # Test Bench
 
-
+module ripple_counter_tb; reg clk, rst; wire [3:0] Q; ripple_counter_func uut ( .clk(clk), .rst(rst), .Q(Q) ); initial begin clk = 0; forever #5 clk = ~clk; end initial begin rst = 1; #12; rst = 0; #200; rst = 1; #10; rst = 0; #100; $finish; end endmodule
 # Output Waveform 
 
+<img width="1280" height="725" alt="Screenshot 2025-11-18 003756" src="https://github.com/user-attachments/assets/916a2153-356b-4ba5-b4e8-62fce9104d01" />
 
 # Conclusion
 In this experiment, a 4-bit-Ripple-counter-using-Function-and-4-bit-Ripple-Adder-using-task was successfully designed and simulated using Verilog HDL.
