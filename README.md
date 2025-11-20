@@ -53,6 +53,7 @@ endmodule
 
 
 # Test Bench
+```
 module ripcar_tb; reg [3:0] a, b; reg cin; wire [3:0] sum; wire cout; ripcar uut (a, b, cin, sum, cout);
 
 initial begin $monitor("Time=%0t | a=%b b=%b cin=%b | sum=%b cout=%b", $time, a, b, cin, sum, cout);
@@ -80,8 +81,9 @@ module ripple_counter_func (
             Q <= count(Q);  // use function to increment
     end
 endmodule
+```
 
-# Test Bench
+## Test Bench
 
 module ripple_counter_tb; reg clk, rst; wire [3:0] Q; ripple_counter_func uut ( .clk(clk), .rst(rst), .Q(Q) ); initial begin clk = 0; forever #5 clk = ~clk; end initial begin rst = 1; #12; rst = 0; #200; rst = 1; #10; rst = 0; #100; $finish; end endmodule
 # Output Waveform 
